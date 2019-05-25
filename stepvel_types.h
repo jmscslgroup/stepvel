@@ -7,9 +7,9 @@
  *
  * Code generation for model "stepvel".
  *
- * Model version              : 1.26
- * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C++ source code generated on : Wed May 16 20:42:02 2018
+ * Model version              : 1.27
+ * Simulink Coder version : 9.0 (R2018b) 24-May-2018
+ * C++ source code generated on : Fri May 24 15:25:00 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -43,12 +43,24 @@ typedef struct {
 
 #endif
 
+#ifndef typedef_robotics_slcore_internal_bloc_T
+#define typedef_robotics_slcore_internal_bloc_T
+
+typedef struct {
+  int32_T __dummy;
+} robotics_slcore_internal_bloc_T;
+
+#endif                                 /*typedef_robotics_slcore_internal_bloc_T*/
+
 #ifndef typedef_robotics_slros_internal_block_T
 #define typedef_robotics_slros_internal_block_T
 
 typedef struct {
+  boolean_T matlabCodegenIsDeleted;
   int32_T isInitialized;
-  real_T SampleTime;
+  boolean_T isSetupComplete;
+  real_T ticksUntilNextHit;
+  robotics_slcore_internal_bloc_T SampleTimeHandler;
 } robotics_slros_internal_block_T;
 
 #endif                                 /*typedef_robotics_slros_internal_block_T*/
@@ -57,7 +69,9 @@ typedef struct {
 #define typedef_robotics_slros_internal_blo_d_T
 
 typedef struct {
+  boolean_T matlabCodegenIsDeleted;
   int32_T isInitialized;
+  boolean_T isSetupComplete;
 } robotics_slros_internal_blo_d_T;
 
 #endif                                 /*typedef_robotics_slros_internal_blo_d_T*/
@@ -66,7 +80,7 @@ typedef struct {
 #define typedef_struct_T_stepvel_T
 
 typedef struct {
-  char_T f1[4];
+  char_T Value[4];
 } struct_T_stepvel_T;
 
 #endif                                 /*typedef_struct_T_stepvel_T*/
@@ -75,52 +89,30 @@ typedef struct {
 #define typedef_struct_T_stepvel_d_T
 
 typedef struct {
-  char_T f1[8];
+  char_T Value[9];
 } struct_T_stepvel_d_T;
 
 #endif                                 /*typedef_struct_T_stepvel_d_T*/
 
-#ifndef typedef_struct_T_stepvel_dc_T
-#define typedef_struct_T_stepvel_dc_T
+#ifndef struct_tag_smnSVBYMKVOFO5RozNZjEpF
+#define struct_tag_smnSVBYMKVOFO5RozNZjEpF
 
-typedef struct {
-  char_T f1[7];
-} struct_T_stepvel_dc_T;
+struct tag_smnSVBYMKVOFO5RozNZjEpF
+{
+  char_T Disallow[9];
+  char_T Type[9];
+};
 
-#endif                                 /*typedef_struct_T_stepvel_dc_T*/
+#endif                                 /*struct_tag_smnSVBYMKVOFO5RozNZjEpF*/
 
-#ifndef typedef_struct_T_stepvel_dcr_T
-#define typedef_struct_T_stepvel_dcr_T
+#ifndef typedef_smnSVBYMKVOFO5RozNZjEpF_stepv_T
+#define typedef_smnSVBYMKVOFO5RozNZjEpF_stepv_T
 
-typedef struct {
-  char_T f1[8];
-  char_T f2[4];
-  char_T f3[6];
-} struct_T_stepvel_dcr_T;
+typedef struct tag_smnSVBYMKVOFO5RozNZjEpF smnSVBYMKVOFO5RozNZjEpF_stepv_T;
 
-#endif                                 /*typedef_struct_T_stepvel_dcr_T*/
+#endif                                 /*typedef_smnSVBYMKVOFO5RozNZjEpF_stepv_T*/
 
-#ifndef typedef_struct_T_stepvel_dcrp_T
-#define typedef_struct_T_stepvel_dcrp_T
-
-typedef struct {
-  real_T f1[2];
-} struct_T_stepvel_dcrp_T;
-
-#endif                                 /*typedef_struct_T_stepvel_dcrp_T*/
-
-#ifndef typedef_struct_T_stepvel_dcrp3_T
-#define typedef_struct_T_stepvel_dcrp3_T
-
-typedef struct {
-  char_T f1[8];
-  char_T f2[7];
-  char_T f3[6];
-} struct_T_stepvel_dcrp3_T;
-
-#endif                                 /*typedef_struct_T_stepvel_dcrp3_T*/
-
-/* Parameters (auto storage) */
+/* Parameters (default storage) */
 typedef struct P_stepvel_T_ P_stepvel_T;
 
 /* Forward declaration for rtModel */

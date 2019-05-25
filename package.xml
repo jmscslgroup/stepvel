@@ -4,7 +4,7 @@
   <description>
   This package is generated from stepvel Simulink model.
   </description>
-  <maintainer email="rahulbhadani@email.arizona.edu">Rahul Kumar Bhadani</maintainer>
+  <maintainer email="rahulbhadani@email.arizona.edu">Rahu Bhadani</maintainer>
   <license>BSD</license>
 
   <buildtool_depend>catkin</buildtool_depend>

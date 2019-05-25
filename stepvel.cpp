@@ -7,9 +7,9 @@
  *
  * Code generation for model "stepvel".
  *
- * Model version              : 1.26
- * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C++ source code generated on : Wed May 16 20:42:02 2018
+ * Model version              : 1.27
+ * Simulink Coder version : 9.0 (R2018b) 24-May-2018
+ * C++ source code generated on : Fri May 24 15:25:00 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -20,82 +20,56 @@
 
 #include "stepvel.h"
 #include "stepvel_private.h"
-#define stepvel_MessageQueueLen        (1)
-#define stepvel_ParameterInitialValue  (0.0)
-#define stepvel_ParameterInitialValue_d (3.0)
 
-/* Block signals (auto storage) */
-B_stepvel_T stepvel_B;
-
-/* Block states (auto storage) */
+/* Block states (default storage) */
 DW_stepvel_T stepvel_DW;
 
 /* Real-time model */
 RT_MODEL_stepvel_T stepvel_M_;
 RT_MODEL_stepvel_T *const stepvel_M = &stepvel_M_;
 
+/* Forward declaration for local functions */
+static void matlabCodegenHandle_matlabCodeg(robotics_slros_internal_block_T *obj);
+static void matlabCodegenHandle_matlabCo_dc(robotics_slros_internal_blo_d_T *obj);
+static void matlabCodegenHandle_matlabCodeg(robotics_slros_internal_block_T *obj)
+{
+  if (!obj->matlabCodegenIsDeleted) {
+    obj->matlabCodegenIsDeleted = true;
+  }
+}
+
+static void matlabCodegenHandle_matlabCo_dc(robotics_slros_internal_blo_d_T *obj)
+{
+  if (!obj->matlabCodegenIsDeleted) {
+    obj->matlabCodegenIsDeleted = true;
+  }
+}
+
 /* Model step function */
 void stepvel_step(void)
 {
-  boolean_T p;
-  boolean_T p_0;
   real_T value;
   real_T value_0;
+  SL_Bus_stepvel_geometry_msgs_Twist rtb_BusAssignment;
 
-  /* Start for MATLABSystem: '<Root>/Connstant Velocity' incorporates:
-   *  MATLABSystem: '<Root>/Connstant Velocity'
-   */
-  p = false;
-  p_0 = true;
-  if (!(stepvel_DW.obj.SampleTime == stepvel_P.ConnstantVelocity_SampleTime)) {
-    p_0 = false;
-  }
-
-  if (p_0) {
-    p = true;
-  }
-
-  if (!p) {
-    stepvel_DW.obj.SampleTime = stepvel_P.ConnstantVelocity_SampleTime;
-  }
-
+  /* MATLABSystem: '<Root>/Connstant Velocity' */
   ParamGet_stepvel_93.get_parameter(&value);
 
-  /* Start for MATLABSystem: '<Root>/Steering angle' incorporates:
-   *  MATLABSystem: '<Root>/Steering angle'
-   */
-  p = false;
-  p_0 = true;
-  if (!(stepvel_DW.obj_n.SampleTime == stepvel_P.Steeringangle_SampleTime)) {
-    p_0 = false;
-  }
-
-  if (p_0) {
-    p = true;
-  }
-
-  if (!p) {
-    stepvel_DW.obj_n.SampleTime = stepvel_P.Steeringangle_SampleTime;
-  }
-
+  /* MATLABSystem: '<Root>/Steering angle' */
   ParamGet_stepvel_92.get_parameter(&value_0);
 
   /* BusAssignment: '<Root>/Bus Assignment' incorporates:
    *  Constant: '<S1>/Constant'
    *  MATLABSystem: '<Root>/Connstant Velocity'
-   *  Start for MATLABSystem: '<Root>/Connstant Velocity'
    *  MATLABSystem: '<Root>/Steering angle'
-   *  Start for MATLABSystem: '<Root>/Steering angle'
    */
-  stepvel_B.BusAssignment = stepvel_P.Constant_Value;
-  stepvel_B.BusAssignment.Linear.X = value;
-  stepvel_B.BusAssignment.Angular.Z = value_0;
+  rtb_BusAssignment = stepvel_P.Constant_Value;
+  rtb_BusAssignment.Linear.X = value;
+  rtb_BusAssignment.Angular.Z = value_0;
 
   /* Outputs for Atomic SubSystem: '<Root>/Publish for Leader Vel' */
-  /* Start for MATLABSystem: '<S2>/SinkBlock' incorporates:
-   *  MATLABSystem: '<S2>/SinkBlock'
-   */
-  Pub_stepvel_27.publish(&stepvel_B.BusAssignment);
+  /* MATLABSystem: '<S2>/SinkBlock' */
+  Pub_stepvel_27.publish(&rtb_BusAssignment);
 
   /* End of Outputs for SubSystem: '<Root>/Publish for Leader Vel' */
 }
@@ -124,9 +98,12 @@ void stepvel_initialize(void)
     int32_T i;
 
     /* Start for MATLABSystem: '<Root>/Connstant Velocity' */
+    stepvel_DW.obj.matlabCodegenIsDeleted = true;
     stepvel_DW.obj.isInitialized = 0;
+    stepvel_DW.obj.ticksUntilNextHit = 0.0;
+    stepvel_DW.obj.matlabCodegenIsDeleted = false;
     stepvel_DW.objisempty_p = true;
-    stepvel_DW.obj.SampleTime = stepvel_P.ConnstantVelocity_SampleTime;
+    stepvel_DW.obj.isSetupComplete = false;
     stepvel_DW.obj.isInitialized = 1;
     for (i = 0; i < 8; i++) {
       tmp_3[i] = tmp_1[i];
@@ -134,15 +111,19 @@ void stepvel_initialize(void)
 
     tmp_3[8] = '\x00';
     ParamGet_stepvel_93.initialize(tmp_3);
-    ParamGet_stepvel_93.initialize_error_codes(0U, 1U, 2U, 3U);
-    ParamGet_stepvel_93.set_initial_value(stepvel_ParameterInitialValue_d);
+    ParamGet_stepvel_93.initialize_error_codes(0, 1, 2, 3);
+    ParamGet_stepvel_93.set_initial_value(3.0);
+    stepvel_DW.obj.isSetupComplete = true;
 
     /* End of Start for MATLABSystem: '<Root>/Connstant Velocity' */
 
     /* Start for MATLABSystem: '<Root>/Steering angle' */
+    stepvel_DW.obj_n.matlabCodegenIsDeleted = true;
     stepvel_DW.obj_n.isInitialized = 0;
+    stepvel_DW.obj_n.ticksUntilNextHit = 0.0;
+    stepvel_DW.obj_n.matlabCodegenIsDeleted = false;
     stepvel_DW.objisempty_h = true;
-    stepvel_DW.obj_n.SampleTime = stepvel_P.Steeringangle_SampleTime;
+    stepvel_DW.obj_n.isSetupComplete = false;
     stepvel_DW.obj_n.isInitialized = 1;
     for (i = 0; i < 8; i++) {
       tmp_3[i] = tmp_0[i];
@@ -150,22 +131,27 @@ void stepvel_initialize(void)
 
     tmp_3[8] = '\x00';
     ParamGet_stepvel_92.initialize(tmp_3);
-    ParamGet_stepvel_92.initialize_error_codes(0U, 1U, 2U, 3U);
-    ParamGet_stepvel_92.set_initial_value(stepvel_ParameterInitialValue);
+    ParamGet_stepvel_92.initialize_error_codes(0, 1, 2, 3);
+    ParamGet_stepvel_92.set_initial_value(0.0);
+    stepvel_DW.obj_n.isSetupComplete = true;
 
     /* End of Start for MATLABSystem: '<Root>/Steering angle' */
 
     /* Start for Atomic SubSystem: '<Root>/Publish for Leader Vel' */
     /* Start for MATLABSystem: '<S2>/SinkBlock' */
+    stepvel_DW.obj_m.matlabCodegenIsDeleted = true;
     stepvel_DW.obj_m.isInitialized = 0;
+    stepvel_DW.obj_m.matlabCodegenIsDeleted = false;
     stepvel_DW.objisempty = true;
+    stepvel_DW.obj_m.isSetupComplete = false;
     stepvel_DW.obj_m.isInitialized = 1;
     for (i = 0; i < 7; i++) {
       tmp_2[i] = tmp[i];
     }
 
     tmp_2[7] = '\x00';
-    Pub_stepvel_27.createPublisher(tmp_2, stepvel_MessageQueueLen);
+    Pub_stepvel_27.createPublisher(tmp_2, 1);
+    stepvel_DW.obj_m.isSetupComplete = true;
 
     /* End of Start for MATLABSystem: '<S2>/SinkBlock' */
     /* End of Start for SubSystem: '<Root>/Publish for Leader Vel' */
@@ -175,32 +161,15 @@ void stepvel_initialize(void)
 /* Model terminate function */
 void stepvel_terminate(void)
 {
-  /* Start for MATLABSystem: '<Root>/Connstant Velocity' incorporates:
-   *  Terminate for MATLABSystem: '<Root>/Connstant Velocity'
-   */
-  if (stepvel_DW.obj.isInitialized == 1) {
-    stepvel_DW.obj.isInitialized = 2;
-  }
+  /* Terminate for MATLABSystem: '<Root>/Connstant Velocity' */
+  matlabCodegenHandle_matlabCodeg(&stepvel_DW.obj);
 
-  /* End of Start for MATLABSystem: '<Root>/Connstant Velocity' */
-
-  /* Start for MATLABSystem: '<Root>/Steering angle' incorporates:
-   *  Terminate for MATLABSystem: '<Root>/Steering angle'
-   */
-  if (stepvel_DW.obj_n.isInitialized == 1) {
-    stepvel_DW.obj_n.isInitialized = 2;
-  }
-
-  /* End of Start for MATLABSystem: '<Root>/Steering angle' */
+  /* Terminate for MATLABSystem: '<Root>/Steering angle' */
+  matlabCodegenHandle_matlabCodeg(&stepvel_DW.obj_n);
 
   /* Terminate for Atomic SubSystem: '<Root>/Publish for Leader Vel' */
-  /* Start for MATLABSystem: '<S2>/SinkBlock' incorporates:
-   *  Terminate for MATLABSystem: '<S2>/SinkBlock'
-   */
-  if (stepvel_DW.obj_m.isInitialized == 1) {
-    stepvel_DW.obj_m.isInitialized = 2;
-  }
+  /* Terminate for MATLABSystem: '<S2>/SinkBlock' */
+  matlabCodegenHandle_matlabCo_dc(&stepvel_DW.obj_m);
 
-  /* End of Start for MATLABSystem: '<S2>/SinkBlock' */
   /* End of Terminate for SubSystem: '<Root>/Publish for Leader Vel' */
 }

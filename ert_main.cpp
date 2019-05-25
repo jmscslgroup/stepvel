@@ -12,6 +12,7 @@ void exitFcn(int sig);
 void *terminateTask(void *arg);
 void *baseRateTask(void *arg);
 void *subrateTask(void *arg);
+volatile boolean_T stopRequested = false;
 volatile boolean_T runModel = true;
 sem_t stopSem;
 sem_t baserateTaskSem;
@@ -27,7 +28,8 @@ void *baseRateTask(void *arg)
     stepvel_step();
 
     /* Get model outputs here */
-    runModel = (rtmGetErrorStatus(stepvel_M) == (NULL));
+    stopRequested = !((rtmGetErrorStatus(stepvel_M) == (NULL)));
+    runModel = !stopRequested;
   }
 
   runModel = 0;
@@ -75,5 +77,17 @@ int main(int argc, char **argv)
 
   /* Wait for stop semaphore */
   sem_wait(&stopSem);
+
+#if (MW_NUMBER_TIMER_DRIVEN_TASKS > 0)
+
+  {
+    int i;
+    for (i=0; i < MW_NUMBER_TIMER_DRIVEN_TASKS; i++) {
+      CHECK_STATUS(sem_destroy(&timerTaskSem[i]), 0, "sem_destroy");
+    }
+  }
+
+#endif
+
   return 0;
 }

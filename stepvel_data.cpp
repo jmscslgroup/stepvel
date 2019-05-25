@@ -7,9 +7,9 @@
  *
  * Code generation for model "stepvel".
  *
- * Model version              : 1.26
- * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C++ source code generated on : Wed May 16 20:42:02 2018
+ * Model version              : 1.27
+ * Simulink Coder version : 9.0 (R2018b) 24-May-2018
+ * C++ source code generated on : Fri May 24 15:25:00 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -21,8 +21,11 @@
 #include "stepvel.h"
 #include "stepvel_private.h"
 
-/* Block parameters (auto storage) */
+/* Block parameters (default storage) */
 P_stepvel_T stepvel_P = {
+  /* Computed Parameter: Constant_Value
+   * Referenced by: '<S1>/Constant'
+   */
   {
     {
       0.0,                             /* X */
@@ -35,13 +38,5 @@ P_stepvel_T stepvel_P = {
       0.0,                             /* Y */
       0.0                              /* Z */
     }                                  /* Angular */
-  },                                   /* Computed Parameter: Constant_Value
-                                        * Referenced by: '<S1>/Constant'
-                                        */
-  -1.0,                                /* Expression: SampleTime
-                                        * Referenced by: '<Root>/Steering angle'
-                                        */
-  -1.0                                 /* Expression: SampleTime
-                                        * Referenced by: '<Root>/Connstant Velocity'
-                                        */
+  }
 };

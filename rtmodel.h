@@ -7,9 +7,9 @@
  *
  * Code generation for model "stepvel".
  *
- * Model version              : 1.26
- * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C++ source code generated on : Wed May 16 20:42:02 2018
+ * Model version              : 1.27
+ * Simulink Coder version : 9.0 (R2018b) 24-May-2018
+ * C++ source code generated on : Fri May 24 15:25:00 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -22,8 +22,8 @@
  *
  * Code generation for Simulink model "stepvel".
  *
- * Simulink Coder version                : 8.12 (R2017a) 16-Feb-2017
- * C++ source code generated on : Wed May 16 20:42:02 2018
+ * Simulink Coder version                : 9.0 (R2018b) 24-May-2018
+ * C++ source code generated on : Fri May 24 15:25:00 2019
  *
  * Note that the generated code is not dependent on this header file.
  * The file is used in cojuction with the automatic build procedure.

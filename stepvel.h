@@ -7,9 +7,9 @@
  *
  * Code generation for model "stepvel".
  *
- * Model version              : 1.26
- * Simulink Coder version : 8.12 (R2017a) 16-Feb-2017
- * C++ source code generated on : Wed May 16 20:42:02 2018
+ * Model version              : 1.27
+ * Simulink Coder version : 9.0 (R2018b) 24-May-2018
+ * C++ source code generated on : Fri May 24 15:25:00 2019
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -44,35 +44,21 @@
 # define rtmSetErrorStatus(rtm, val)   ((rtm)->errorStatus = (val))
 #endif
 
-/* Block signals (auto storage) */
-typedef struct {
-  SL_Bus_stepvel_geometry_msgs_Twist BusAssignment;/* '<Root>/Bus Assignment' */
-} B_stepvel_T;
-
-/* Block states (auto storage) for system '<Root>' */
+/* Block states (default storage) for system '<Root>' */
 typedef struct {
   robotics_slros_internal_block_T obj; /* '<Root>/Connstant Velocity' */
   robotics_slros_internal_block_T obj_n;/* '<Root>/Steering angle' */
-  void *SinkBlock_PWORK;               /* '<S2>/SinkBlock' */
-  void *ConnstantVelocity_PWORK;       /* '<Root>/Connstant Velocity' */
-  void *Steeringangle_PWORK;           /* '<Root>/Steering angle' */
   robotics_slros_internal_blo_d_T obj_m;/* '<S2>/SinkBlock' */
   boolean_T objisempty;                /* '<S2>/SinkBlock' */
   boolean_T objisempty_p;              /* '<Root>/Connstant Velocity' */
   boolean_T objisempty_h;              /* '<Root>/Steering angle' */
 } DW_stepvel_T;
 
-/* Parameters (auto storage) */
+/* Parameters (default storage) */
 struct P_stepvel_T_ {
   SL_Bus_stepvel_geometry_msgs_Twist Constant_Value;/* Computed Parameter: Constant_Value
                                                      * Referenced by: '<S1>/Constant'
                                                      */
-  real_T Steeringangle_SampleTime;     /* Expression: SampleTime
-                                        * Referenced by: '<Root>/Steering angle'
-                                        */
-  real_T ConnstantVelocity_SampleTime; /* Expression: SampleTime
-                                        * Referenced by: '<Root>/Connstant Velocity'
-                                        */
 };
 
 /* Real-time Model Data Structure */
@@ -80,7 +66,7 @@ struct tag_RTM_stepvel_T {
   const char_T *errorStatus;
 };
 
-/* Block parameters (auto storage) */
+/* Block parameters (default storage) */
 #ifdef __cplusplus
 
 extern "C" {
@@ -94,22 +80,8 @@ extern "C" {
 }
 #endif
 
-/* Block signals (auto storage) */
-extern B_stepvel_T stepvel_B;
-
-/* Block states (auto storage) */
+/* Block states (default storage) */
 extern DW_stepvel_T stepvel_DW;
-
-#ifdef __cplusplus
-
-extern "C" {
-
-#endif
-
-#ifdef __cplusplus
-
-}
-#endif
 
 #ifdef __cplusplus
 
